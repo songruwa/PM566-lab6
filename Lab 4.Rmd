@@ -88,7 +88,7 @@ mtsamples %>%
   geom_col()
 ```
 
-I found the word "patient" is important, and there are many stop words
+I found the word "patient" is   important, and there are many stop words
 
 
 Question 3
