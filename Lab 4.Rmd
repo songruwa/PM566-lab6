@@ -79,9 +79,31 @@ Count the number of times each token appears
 Visualize the top 20 most frequent words
 Explain what we see from this result. Does it makes sense? What insights (if any) do we get?
 ```{r,cache=TRUE}
+library(forcats)
 mtsamples %>%
   unnest_tokens(output=word,input = transcription)%>%
   count(word,sort=TRUE)%>%
-  top_n(20)
+  top_n(20)%>%
+  ggplot(aes(x=n,y=fct_reorder(word,n)))+
+  geom_col()
 ```
+
+I found the word "patient" is important, and there are many stop words
+
+
+Question 3
+Redo visualization but remove stopwords before
+Bonus points if you remove numbers as well
+What do we see know that we have removed stop words? Does it give us a better idea of what the text is about?
+```{r,cache=TRUE}
+library(forcats)
+mtsamples %>%
+  unnest_tokens(output=word,input = transcription)%>%
+  count(word,sort=TRUE)%>%
+  top_n(20)%>%
+  ggplot(aes(x=n,y=fct_reorder(word,n)))+
+  geom_col()
+```
+
+Looking better, but we don't like the numbers.
 
